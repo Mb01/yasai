@@ -1,0 +1,45 @@
+.top{
+	
+	height: 200px;
+	clear: both;
+	border: solid black 1px;
+	width: 1203px;
+	margin: 10px 10px 10px 10px
+}
+
+.leftpanel{
+
+	float: left;
+	width: 150px;
+	height: 200px;
+	border: solid black 1px;
+	margin: 0px 0px 0px 10px
+}
+
+.middlepanel{
+
+	width: 800px;
+	height: 200px;
+	float: left;
+	border: solid black 1px;
+	margin: 0px 10px 0px 10px
+}
+
+.rightpanel{
+
+	float: right;
+	width: 300px;
+	height: 200px;
+	border: solid black 1px;
+	margin: 0px 0px 0px 0px;
+	
+}
+
+.bottom{
+	height: 90px;
+	clear: both;
+	width: 1203px;
+	border: solid black 1px;
+	margin: 20px 10px 0px 10px;
+	float: left;
+}
