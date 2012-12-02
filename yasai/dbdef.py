@@ -23,6 +23,8 @@ class User(db.Model):
 
 def createItem(store, name, price):
     parent = Store.all().filter("name =", store).get()
+    if not parent:
+        return "No such store found."
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     if item:
         modifyItemPrice(store, name, price)

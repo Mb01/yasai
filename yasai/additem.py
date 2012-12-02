@@ -38,7 +38,10 @@ class AddItem(Handler):
         if arg['error_itemname'] or arg['error_storename'] or arg['error_price']:
             self.render(def_template, **arg)
         else:
-            createItem(arg['storename'], arg['itemname'], arg['price'])
+            arg['error_storename'] = createItem(arg['storename'], arg['itemname'], arg['price'])
+        if arg['error_storename']:
+            self.render(def_template, **arg)
+        else:
             self.redirect("/")
 
 app = webapp2.WSGIApplication([('/additem', AddItem)], debug=True)
