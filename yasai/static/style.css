@@ -6,34 +6,18 @@
 	width: 1203px;
 	margin: 10px 10px 10px 10px
 }
-
+/*!!!
 .leftpanel{
 
 	float: left;
 	width: 150px;
 	height: 200px;
 	border: solid black 1px;
-	margin: 0px 0px 0px 10px
+	margin: 0px 0px 0px 10px;
+	padding: 0px 0px 0px 0px;
 }
+!!!*/
 
-.middlepanel{
-
-	width: 800px;
-	height: 200px;
-	float: left;
-	border: solid black 1px;
-	margin: 0px 10px 0px 10px
-}
-
-.rightpanel{
-
-	float: right;
-	width: 300px;
-	height: 200px;
-	border: solid black 1px;
-	margin: 0px 0px 0px 0px;
-	
-}
 
 .bottom{
 	height: 90px;

@@ -11,7 +11,3 @@ def mems(key,val):
     memcache.set(key, val) #@UndefinedVariable don't worry be happy
 def memg(key):
     return memcache.get(key) #@UndefinedVariable don't worry be happy
-
-
-#this comment is a change to check git
-#this is another change
