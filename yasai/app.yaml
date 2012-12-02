@@ -15,6 +15,14 @@ handlers:
 - url: /style.css
   static_files: static/style.css
   upload: static/style.css
+- url: /signup
+  script: signup.app
+
+
+
+
+
+
 - url: /(.*)
   script: mainpage.app
 

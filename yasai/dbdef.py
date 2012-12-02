@@ -14,8 +14,15 @@ class Store(db.Model):
 class Item(db.Model):
     name = db.StringProperty(required=True)
     price = db.IntegerProperty(required=False)
+
+class User(db.Model):
+    username = db.StringProperty(required=True)
+    password = db.StringProperty(required=True)
+    email = db.StringProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add=True)
     
-    
+
+
 def createItem(store, name, price):
     parent = Store.all().filter("name =", store).get()
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
@@ -32,6 +39,7 @@ def modifyItemPrice(store, name, price):
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     item.price = price
     item.put()
+
     
 
         
