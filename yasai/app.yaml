@@ -21,6 +21,8 @@ handlers:
   script: additem.app
 - url: /addstore
   script: addstore.app
+- url: /login
+  script: login.app
 
 
 

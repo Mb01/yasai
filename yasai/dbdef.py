@@ -62,6 +62,8 @@ def createUser(username, password, email=None):
     logging.info(message)
     return message
 
+def checkLogin(username, password):
+    pass
 
     
     
