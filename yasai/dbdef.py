@@ -20,8 +20,6 @@ class User(db.Model):
     password = db.StringProperty(required=True)
     email = db.StringProperty(required=False)
     created = db.DateTimeProperty(auto_now_add=True)
-    
-
 
 def createItem(store, name, price):
     parent = Store.all().filter("name =", store).get()
@@ -39,7 +37,3 @@ def modifyItemPrice(store, name, price):
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     item.price = price
     item.put()
-
-    
-
-        
