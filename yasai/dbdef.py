@@ -10,11 +10,13 @@ from google.appengine.ext import db #@UnresolvedImport don't worry be happy
 class Store(db.Model):
     name = db.StringProperty(required=True)
     location = db.GeoPtProperty(required=False)
-
+    created = db.DateTimeProperty(auto_now_add=True)
+    
 class Item(db.Model):
     name = db.StringProperty(required=True)
     price = db.IntegerProperty(required=False)
-
+    created = db.DateTimeProperty(auto_now_add=True)
+    
 class User(db.Model):
     username = db.StringProperty(required=True)
     password = db.StringProperty(required=True)
@@ -39,3 +41,13 @@ def modifyItemPrice(store, name, price):
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     item.price = price
     item.put()
+
+def createStore(name):
+    check = Store.all().filter("name =", name).get()
+    if check:
+        return "store of that name exists"
+    else:
+        a = Store(name=name)
+        a.put()
+
+    
