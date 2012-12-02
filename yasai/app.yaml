@@ -19,7 +19,8 @@ handlers:
   script: signup.app
 - url: /additem
   script: additem.app
-
+- url: /addstore
+  script: addstore.app
 
 
 

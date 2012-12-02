@@ -4,6 +4,7 @@ Created on Dec 1, 2012
 @author: mark
 '''
 import logging
+from secrets import makeHash, testHash
 
 from google.appengine.ext import db #@UnresolvedImport don't worry be happy
 
@@ -50,4 +51,17 @@ def createStore(name):
         a = Store(name=name)
         a.put()
 
+def createUser(username, password, email=None):
+    password = makeHash(password)
+    if email:
+        user = User(username=username, password=password, email=email)
+    else:
+        user = User(username=username, password=password)
+    user.put()
+    message = "user: " + username + " created."
+    logging.info(message)
+    return message
+
+
+    
     

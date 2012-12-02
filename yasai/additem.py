@@ -17,6 +17,7 @@ class AddItem(Handler):
         arg = {}
         arg['itemname'] = self.request.get("itemname")
         arg['storename'] = self.request.get("storename")
+        
         arg['price'] = self.request.get("price")
         
         arg['error_itemname'] = arg['error_storename'] = arg['error_price'] = ""
@@ -34,7 +35,8 @@ class AddItem(Handler):
          
         if not arg['price'].isdigit():
             arg['error_price'] = "price must be a number"
-        
+        else:
+            arg['price'] = int( arg['price'])
         if arg['error_itemname'] or arg['error_storename'] or arg['error_price']:
             self.render(def_template, **arg)
         else:

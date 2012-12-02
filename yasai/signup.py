@@ -45,14 +45,10 @@ class Signup(Handler):
                         username=username,
                         email=email)
         else:
-            if email:
-                a = User(username=username,email=email,password=password)
-                a.put()
-            else:
-                a = User(username=username,password=password)
-                a.put()
+            createUser(username, password, email)
+            #
+            #TODO: secure the cookie against edits by hashing
             self.response.headers.add_header('Set-Cookie',str('username=%s;Path=/' % username ))
-        
             self.redirect("/")
 
 app = webapp2.WSGIApplication([('/signup', Signup)], debug=True)
