@@ -17,7 +17,8 @@ handlers:
   upload: static/style.css
 - url: /signup
   script: signup.app
-
+- url: /additem
+  script: additem.app
 
 
 
