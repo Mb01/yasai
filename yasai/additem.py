@@ -29,12 +29,16 @@ class AddItem(Handler):
             arg['error_storename'] = "enter store name"
         if not arg['price']:
             arg['error_price'] = "enter price"
-            
         
+        #other checks
+         
+        if not arg['price'].isdigit():
+            arg['error_price'] = "price must be a number"
         
         if arg['error_itemname'] or arg['error_storename'] or arg['error_price']:
             self.render(def_template, **arg)
         else:
+            createItem(arg['storename'], arg['itemname'], arg['price'])
             self.redirect("/")
 
 app = webapp2.WSGIApplication([('/additem', AddItem)], debug=True)

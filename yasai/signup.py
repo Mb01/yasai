@@ -3,8 +3,8 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import *
-from envdef import *
+from dbdef import * #@UnusedWildImport don't worry be happy
+from envdef import * #@UnusedWildImport don't worry be happy
 import re
 
 def_template = "signup.html"
