@@ -46,6 +46,6 @@ class Signup(Handler):
                 a = User(username=username,password=password)
             self.response.headers.add_header('Set-Cookie',str('username=%s;Path=/' % username ))
         
-            self.redirect("/welcome?username=" + username)
+            self.redirect("/")
 
 app = webapp2.WSGIApplication([('/signup', Signup)], debug=True)
