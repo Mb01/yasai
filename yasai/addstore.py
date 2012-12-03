@@ -3,7 +3,7 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import *
+from dbfunc import createStore
 from envdef import *
 
 def_template = "addstore.html"

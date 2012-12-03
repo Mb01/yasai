@@ -3,7 +3,7 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import *
+from dbfunc import createItem
 from envdef import *
 
 

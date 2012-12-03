@@ -3,7 +3,7 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import checkCred
+from dbfunc import checkCred
 from envdef import *
 
 
@@ -16,7 +16,6 @@ class Login(Handler):
     def post(self):
         username = self.request.get("username")
         password = self.request.get("password")
-        
         
         cred = checkCred(username, password)
         if cred:
