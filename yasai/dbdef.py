@@ -53,17 +53,23 @@ def createStore(name):
 
 def createUser(username, password, email=None):
     password = makeHash(password)
+    exists = User.all().filter("username =", username).get()
+    if exists:
+        return "User " + username + " taken."
     if email:
         user = User(username=username, password=password, email=email)
     else:
         user = User(username=username, password=password)
     user.put()
-    message = "user: " + username + " created."
-    logging.info(message)
-    return message
+    logging.info(username + " created!")
 
-def checkLogin(username, password):
-    pass
+def checkCred(username, password):
+    user = User.all().filter("username =", username).get()
+    if user:
+        passMatch = testHash(user.password, password)
+        return passMatch
+    return False
+
 
     
     

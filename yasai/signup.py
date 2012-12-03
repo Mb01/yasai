@@ -3,9 +3,10 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import * #@UnusedWildImport don't worry be happy
-from envdef import * #@UnusedWildImport don't worry be happy
+from dbdef import createUser
+from envdef import *
 import re
+import logging
 
 def_template = "signup.html"
 
@@ -45,10 +46,11 @@ class Signup(Handler):
                         username=username,
                         email=email)
         else:
-            createUser(username, password, email)
-            #
-            #TODO: secure the cookie against edits by hashing
-            self.response.headers.add_header('Set-Cookie',str('username=%s;Path=/' % username ))
+            error_username = createUser(username, password, email)
+        if error_username:
+            self.render(def_template, error_username = error_username)
+        else:
+            self.setCookie(username)
             self.redirect("/")
 
 app = webapp2.WSGIApplication([('/signup', Signup)], debug=True)

@@ -6,6 +6,7 @@ Created on Dec 1, 2012
 import os
 import webapp2
 import jinja2
+from secrets import makeCookieHash, testCookieHash
 
 jinja_environment = jinja2.Environment(autoescape=True,
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')))
@@ -20,5 +21,14 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
     
-    def setCookie(self):
-        pass
+    def setCookie(self, username):
+        cookieVal = "%s:%s" % (str(username), str(makeCookieHash(username)))
+        self.response.set_cookie('user', cookieVal)
+    def testCookie(self):
+        cookie = self.request.cookies.get('user')
+        username, t_hash = cookie.split(':')
+        return testCookieHash(t_hash, username)
+    
+    
+    
+    
