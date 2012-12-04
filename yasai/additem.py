@@ -4,7 +4,7 @@ Created on Dec 2, 2012
 @author: mark
 '''
 from dbfunc import createItem
-from envdef import *
+from envdef import *  #@UnusedWildImport 
 
 
 def_template = "additem.html"

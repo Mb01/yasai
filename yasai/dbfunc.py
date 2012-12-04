@@ -7,25 +7,31 @@ import logging
 from secrets import makeHash, testHash
 from dbdef import *
 
+###item functions
+
 def createItem(store, name, price):
     parent = Store.all().filter("name =", store).get()
     if not parent:
         return "No such store found."
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     if item:
-        modifyItemPrice(store, name, price)
+        _modifyItemPrice(store, name, price)
         logging.info("createItem call resulted in modify item of: " +store+" "+name+" "+str(price))
     else:
         item = Item(parent=parent, name=name,price=price)
         item.put()
         logging.info("item created" + store+" "+name+" "+str(price))
 
-def modifyItemPrice(store, name, price):
+def _modifyItemPrice(store, name, price):
+    '''create item uses this function if item found'''
+    #so error checking is done by createItem
     parent = Store.all().filter("name =", store).get()
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     item.price = price
     item.put()
+    
 
+###store functions
 def createStore(name):
     check = Store.all().filter("name =", name).get()
     if check:
@@ -33,6 +39,8 @@ def createStore(name):
     else:
         a = Store(name=name)
         a.put()
+
+###user functions
 def createUser(username, password, email=None):
     password = makeHash(password)
     exists = User.all().filter("username =", username).get()

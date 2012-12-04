@@ -13,6 +13,8 @@ HTML_TEMPLATE = "mainpage.html"
 class MainPage(Handler):
     def get(self, arg):
         variables = {}
+        if not self.testCookie():
+            self.redirect("/login")
         
         
         self.render(HTML_TEMPLATE, **variables)

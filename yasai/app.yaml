@@ -15,14 +15,17 @@ handlers:
 - url: /style.css
   static_files: static/style.css
   upload: static/style.css
+- url: /mainpage.js
+  static_files: static/mainpage.js
+  upload: static/mainpage.js
 - url: /signup
-  script: handlers.signup.app
+  script: signup.app
 - url: /additem
-  script: handlers.additem.app
+  script: additem.app
 - url: /addstore
-  script: handlers.addstore.app
+  script: addstore.app
 - url: /login
-  script: handlers.login.app
+  script: login.app
 - url: /(.*)
   script: mainpage.app
 

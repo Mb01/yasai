@@ -3,7 +3,7 @@ Created on Dec 2, 2012
 
 @author: mark
 '''
-from dbdef import createUser
+from dbfunc import createUser
 from envdef import *
 import re
 import logging

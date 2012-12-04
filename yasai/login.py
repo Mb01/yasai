@@ -20,7 +20,7 @@ class Login(Handler):
         cred = checkCred(username, password)
         if cred:
             self.setCookie(username)
-            
+        self.redirect("/")
 
 
 app = webapp2.WSGIApplication([('/login', Login)], debug=True)
