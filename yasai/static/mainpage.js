@@ -5,5 +5,10 @@
 
 
 $(document).ready(function(){
-	//jquery goes here ;)
+	$('.itemName').hide();
+	$('.itemPrice').hide();
+	$(".search").click(function(){
+		toShow = $('input[name=searchBar]').val();
+		$('.' + toShow).show();
+	});
 });

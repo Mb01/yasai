@@ -8,20 +8,29 @@
 <body>
 <div class="title">Yasai Check!</div>
 <div class="user">user: {{user}}</div>
+
+<input name="searchBar" type="text" value="apples"></input>
+<button class="search">Search</button>
+
+
 <table>
 {% for store in inventory %}
 	<tr>
 		<td class="storeName">{{store}}</td>
-	</tr>
+	
 	
 	{% for item in inventory[store] %}
-		<tr>
-		<td class="itemName">{{inventory[store][item]['name']}}</td>
-		<td class="itemPrice">{{inventory[store][item]['price']}}</td>
-		</tr>
+		
+		<td  class="{{inventory[store][item]['name']}} itemName">{{inventory[store][item]['name']}}</td>
+		<td  class="{{inventory[store][item]['name']}} itemPrice">{{inventory[store][item]['price']}}</td>
+		
 	{% endfor %}
+	</tr>
 {% endfor %}
 </table>
+
+
+
 
 </body>
 </html>

@@ -24,6 +24,8 @@ table{
 .storeName{
 	color: blue;
 	font-weight: bold;
+	height: 100px;
+	width: 200px;
 }
 .itemPrice{
 	font-weight: bold;
@@ -31,6 +33,7 @@ table{
 }
 .itemName{
 	font-weight: bold;
+	width: 200px;
 }
 
 
