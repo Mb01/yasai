@@ -6,18 +6,22 @@
  <script src="/mainpage.js"></script>
 </head>
 <body>
-
-<ul>
+<div class="title">Yasai Check!</div>
+<div class="user">user: {{user}}</div>
+<table>
 {% for store in inventory %}
-	<li>{{store}}:</li>
-	<ul>
+	<tr>
+		<td class="storeName">{{store}}</td>
+	</tr>
+	
 	{% for item in inventory[store] %}
-		<li>{{inventory[store][item]['name']}}
-		:{{inventory[store][item]['price']}}</li>
+		<tr>
+		<td class="itemName">{{inventory[store][item]['name']}}</td>
+		<td class="itemPrice">{{inventory[store][item]['price']}}</td>
+		</tr>
 	{% endfor %}
-	</ul>
 {% endfor %}
-</ul>
+</table>
 
 </body>
 </html>

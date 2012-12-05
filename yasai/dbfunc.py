@@ -6,22 +6,25 @@ Created on Dec 3, 2012
 import logging
 from secrets import makeHash, testHash
 from dbdef import Store, Item, User
-
+from cache_util import mems, memg
 ### multi functions
 def getInventory():
-    inventory = {}
-    stores = Store.all()
-    for store in stores:
-        inventory[store.name] = {}
-        items = Item.all().ancestor(store.key())
-        for item in items:
-            item = item.asDict()
-            inventory[store.name][item["name"]] = item
+    inventory = memg("_inventory123")
+    if not inventory:
+        logging.info("inventory hits db")
+        inventory = {}
+        stores = Store.all()
+        for store in stores:
+            inventory[store.name] = {}
+            items = Item.all().ancestor(store.key())
+            for item in items:
+                item = item.asDict()
+                inventory[store.name][item["name"]] = item
+        mems("_inventory123", inventory)
+    else:
+        logging.info("inventory hits cache")
     return inventory
     
-
-
-
 ###item functions
 
 def createItem(store, name, price):

@@ -13,12 +13,13 @@ HTML_TEMPLATE = "mainpage.html"
 
 class MainPage(Handler):
     def get(self, arg):
-        variables = {}
-        if not self.testCookie():
+            
+        user = self.testCookie()
+        if not user:
             self.redirect("/login")
         inventory = getInventory()
         
-        self.render(HTML_TEMPLATE, inventory = inventory)
+        self.render(HTML_TEMPLATE, inventory=inventory, user=user)
         
         
 app = webapp2.WSGIApplication([('/(.*)', MainPage)], debug=True)

@@ -29,7 +29,10 @@ class Handler(webapp2.RequestHandler):
         
         if cookie and cookie.find(":") != -1:
             username, t_hash = cookie.split(':')
-            return testCookieHash(t_hash, username)
+            if testCookieHash(t_hash, username):
+                return username
+            else:
+                return False
         else:
             return False
     
