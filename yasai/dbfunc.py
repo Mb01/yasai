@@ -8,10 +8,13 @@ from secrets import makeHash, testHash
 from dbdef import Store, Item, User
 from cache_util import mems, memg
 ### multi functions
-def getInventory():
+def getInventory(update=False):
     inventory = memg("_inventory123")
-    if not inventory:
-        logging.info("inventory hits db")
+    if (not inventory) or update:
+        if update:
+            logging.info("update: inventory hits db")
+        else:
+            logging.info("inventory hit db")
         inventory = {}
         stores = Store.all()
         for store in stores:
