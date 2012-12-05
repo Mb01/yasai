@@ -5,7 +5,22 @@ Created on Dec 3, 2012
 '''
 import logging
 from secrets import makeHash, testHash
-from dbdef import *
+from dbdef import Store, Item, User
+
+### multi functions
+def getInventory():
+    inventory = {}
+    stores = Store.all()
+    for store in stores:
+        inventory[store.name] = {}
+        items = Item.all().ancestor(store.key())
+        for item in items:
+            item = item.asDict()
+            inventory[store.name][item["name"]] = item
+    return inventory
+    
+
+
 
 ###item functions
 
@@ -18,7 +33,7 @@ def createItem(store, name, price):
         _modifyItemPrice(store, name, price)
         logging.info("createItem call resulted in modify item of: " +store+" "+name+" "+str(price))
     else:
-        item = Item(parent=parent, name=name,price=price)
+        item = Item(parent=parent, name=name,price=price, store=store)
         item.put()
         logging.info("item created" + store+" "+name+" "+str(price))
 

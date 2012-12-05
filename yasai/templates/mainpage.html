@@ -7,12 +7,17 @@
 </head>
 <body>
 
-<!-- this is how you loop
-{% for item in liszt %}
-
-	<h1>{{ item }}</h1> 
-
+<ul>
+{% for store in inventory %}
+	<li>{{store}}:</li>
+	<ul>
+	{% for item in inventory[store] %}
+		<li>{{inventory[store][item]['name']}}
+		:{{inventory[store][item]['price']}}</li>
+	{% endfor %}
+	</ul>
 {% endfor %}
--->
+</ul>
+
 </body>
 </html>

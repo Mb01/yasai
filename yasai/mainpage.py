@@ -3,8 +3,9 @@ Created on Dec 1, 2012
 
 @author: mark
 '''
-from envdef import *
-from dbfunc import *
+import webapp2
+from envdef import Handler
+from dbfunc import getInventory
 
 
 HTML_TEMPLATE = "mainpage.html"
@@ -15,9 +16,9 @@ class MainPage(Handler):
         variables = {}
         if not self.testCookie():
             self.redirect("/login")
+        inventory = getInventory()
         
-        
-        self.render(HTML_TEMPLATE, **variables)
+        self.render(HTML_TEMPLATE, inventory = inventory)
         
         
 app = webapp2.WSGIApplication([('/(.*)', MainPage)], debug=True)

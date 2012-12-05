@@ -26,7 +26,8 @@ class Handler(webapp2.RequestHandler):
         self.response.set_cookie('user', cookieVal)
     def testCookie(self):
         cookie = self.request.cookies.get('user')
-        if cookie.find(":") != -1:
+        
+        if cookie and cookie.find(":") != -1:
             username, t_hash = cookie.split(':')
             return testCookieHash(t_hash, username)
         else:
