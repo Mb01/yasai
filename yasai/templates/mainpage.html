@@ -7,13 +7,59 @@
 </head>
 <body>
 
+<a href="/addstore">add store</a>
+<a href="/additem">add item</a>
+
 <div class=whole>
 
 <div class="title">Yasai Check!</div>
 <div class="user">user: {{user}}</div>
 
-<input name="searchBar" type="text" value="apples"></input>
-<button class="search">Search</button>
+<div class="bar">
+	<input name="searchBar" type="text" value="apples"></input>
+	<button class="search">Search</button>
+	<button class="input">enter prices</button>
+</div>
+
+<form method='post'>
+<table>
+        <tr>
+          <td class="label">
+            Store
+          </td>
+          <td>
+            <input type="text" name="storeName">
+          </td>
+          <td class="error">
+            {{error_store}}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Item Name
+          </td>
+          <td>
+            <input type="text" name="itemName">
+          </td>
+          <td class="error">
+            {{error_item}}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Price
+          </td>
+          <td>
+            <input type="text" name="price">
+          </td>
+          <td class="error">
+            {{error_price}}
+          </td>
+        </tr>
+</table>
+<input type="submit">
+</form>
+
 
 <div class="results">
 

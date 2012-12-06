@@ -34,7 +34,7 @@ def getInventory(update=False):
 def createItem(store, name, price):
     parent = Store.all().filter("name =", store).get()
     if not parent:
-        return "No such store found."
+        parent = createStore(store)
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     if item:
         _modifyItemPrice(store, name, price)
@@ -42,7 +42,8 @@ def createItem(store, name, price):
     else:
         item = Item(parent=parent, name=name,price=price, store=store)
         item.put()
-        logging.info("item created" + store+" "+name+" "+str(price))
+        getInventory(update=True)
+        logging.info("item created: " + store+" "+name+" "+str(price))
 
 def _modifyItemPrice(store, name, price):
     '''create item uses this function if item found'''
@@ -51,6 +52,7 @@ def _modifyItemPrice(store, name, price):
     item = Item.all().ancestor(parent.key()).filter("name =", name).get()
     item.price = price
     item.put()
+    getInventory(update=True)
     
 
 ###store functions
@@ -61,6 +63,7 @@ def createStore(name):
     else:
         a = Store(name=name)
         a.put()
+        return a
 
 ###user functions
 def createUser(username, password, email=None):
