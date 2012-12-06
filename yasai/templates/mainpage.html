@@ -6,31 +6,38 @@
  <script src="/mainpage.js"></script>
 </head>
 <body>
+
+<div class=whole>
+
 <div class="title">Yasai Check!</div>
 <div class="user">user: {{user}}</div>
 
 <input name="searchBar" type="text" value="apples"></input>
 <button class="search">Search</button>
 
+<div class="results">
 
-<table>
 {% for store in inventory %}
-	<tr>
-		<td class="storeName">{{store}}</td>
+
+		<div class="{{store}} store">
+			<span class="storeName">{{store}}:</span>
+			
+		{% for item in inventory[store] %}
 	
+			<span class="{{inventory[store][item]['name']}} item">
+				<span class="itemName">{{inventory[store][item]['name']}}</span>
+				<span class="itemPrice">{{inventory[store][item]['price']}}</span>			
+			</span>
+			
+		{% endfor %}
 	
-	{% for item in inventory[store] %}
+		</div>
 		
-		<td  class="{{inventory[store][item]['name']}} itemName">{{inventory[store][item]['name']}}</td>
-		<td  class="{{inventory[store][item]['name']}} itemPrice">{{inventory[store][item]['price']}}</td>
-		
-	{% endfor %}
-	</tr>
 {% endfor %}
-</table>
 
+</div>
 
-
+</div>
 
 </body>
 </html>

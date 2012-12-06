@@ -4,11 +4,25 @@
 //included in head of mainpage.html
 
 
+
+
 $(document).ready(function(){
-	$('.itemName').hide();
-	$('.itemPrice').hide();
+		$('.title').hide()
+		$('.search').hide();
+		$('.title').show('slow');
+		
+		
+		$('.search').show('slow');
+		
+		
+		$('.itemName').hide();
+		$('.itemPrice').hide();
+		$('.storeName').hide();
+	
 	$(".search").click(function(){
 		toShow = $('input[name=searchBar]').val();
-		$('.' + toShow).show();
+		$toShow = $('span:contains('+toShow+')').parentsUntil('.results').children();
+		$toShow.show('slow');
 	});
 });
+
