@@ -13,12 +13,10 @@ HTML_TEMPLATE = "mainpage.html"
 
 class MainPage(Handler):
     def get(self, arg):
-
         user = self.testCookie()
         if not user:
             self.redirect("/login")
         inventory = getInventory()
-        
         self.render(HTML_TEMPLATE, inventory=inventory, user=user)
         
     def post(self, arg):
@@ -27,4 +25,5 @@ class MainPage(Handler):
         price = self.request.get("price")
         createItem(storeName, itemName, int(price))
         self.redirect("/")
+        
 app = webapp2.WSGIApplication([('/(.*)', MainPage)], debug=True)
